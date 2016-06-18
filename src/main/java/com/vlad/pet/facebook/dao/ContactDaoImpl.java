@@ -1,6 +1,8 @@
 package com.vlad.pet.facebook.dao;
 
 import com.vlad.pet.facebook.Contact;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +13,7 @@ import java.util.List;
 @Repository
 @Transactional
 public class ContactDaoImpl implements ContactDao{
+    private static final Logger logger = LoggerFactory.getLogger("debug");
     @PersistenceContext
     private EntityManager manager;
     public void persist(Contact contact) {
@@ -48,7 +51,7 @@ public class ContactDaoImpl implements ContactDao{
     }
 
     public List<Contact> find(String needle) {
-        if (needle == null || needle.isEmpty()) return null;
+        if ("".equals(needle)) return null;
         return manager.createQuery("SELECT c FROM Contact c WHERE c.firstName LIKE :name")
                 .setParameter("name", needle)
                 .getResultList();

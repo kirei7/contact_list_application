@@ -17,6 +17,12 @@
   </properties>
 
   <dependencies>
+    <!--DBCP-->
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.2.2</version>
+    </dependency>
     <!-- Spring and Transactions -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -28,6 +34,7 @@
       <artifactId>spring-context</artifactId>
       <version>${spring-framework.version}</version>
       <exclusions>
+        <!--Turn off commons-logging so we can use logback+slf4j-->
         <exclusion>
           <groupId>commons-logging</groupId>
           <artifactId>commons-logging</artifactId>
@@ -49,6 +56,18 @@
       <artifactId>spring-test</artifactId>
       <version>${spring-framework.version}</version>
       <scope>test</scope>
+    </dependency>
+
+    <!--Logging-->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.1.7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>1.7.21</version>
     </dependency>
 
     <!--Junit-->

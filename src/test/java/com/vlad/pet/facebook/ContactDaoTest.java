@@ -1,5 +1,7 @@
 package com.vlad.pet.facebook;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.vlad.pet.facebook.dao.ContactDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +22,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ContactDaoTest {
 
+    private static final Logger logger = LoggerFactory.getLogger("debug");
 
     @Autowired
     ContactDao contactDao;
@@ -80,14 +83,16 @@ public class ContactDaoTest {
         int length = lastNames.size();
         contacts.get(0).setFirstName("Sherlock");
         contacts.get(--length).setFirstName("Karl");
-
+        for (Contact contact : contacts) {
+            contactDao.persist(contact);
+        }
         List<Contact> finded = contactDao.find(nameToSearch);
-        for (Contact contact : finded){}
-            //log.debug("contact name: " + contact.getLastName());
-        //assertTrue(contact.getFirstName().equals(nameToSearch));
-        //number of contacts with name "Ronald" must be 3
-        //assertTrue(finded.size() == 3);
-
+        logger.debug(Integer.toString(finded.size()));
+        for (Contact contact : finded) {
+            assertTrue(contact.getFirstName().equals(nameToSearch));
+            //number of contacts with name "Ronald" must be 3
+            assertTrue(finded.size() == 3);
+        }
     }
     //returns a valid Contact entity
     private Contact getTestContact() {

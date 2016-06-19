@@ -21,7 +21,7 @@ public class ContactServiceTest {
     @Before
     public void setUp() {
         contactDao = Mockito.mock(ContactDao.class);
-        when(contactDao.find(anyString())).thenReturn(new ArrayList<Contact>());
+        when(contactDao.find(anyString())).thenReturn(new ArrayList<>());
         contactService = new ContactService(contactDao);
     }
 

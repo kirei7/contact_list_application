@@ -43,7 +43,7 @@ public class ContactDaoImpl implements ContactDao{
         return contact;
     }
     public void merge(Contact contact) {
-
+        manager.merge(contact);
     }
     public Contact findById(Long id) {
         if (id == null) return null;
@@ -52,8 +52,8 @@ public class ContactDaoImpl implements ContactDao{
 
     public List<Contact> find(String needle) {
         if ("".equals(needle)) return null;
-        return manager.createQuery("SELECT c FROM Contact c WHERE c.firstName LIKE :name")
-                .setParameter("name", needle)
+        return manager.createQuery("SELECT c FROM Contact c WHERE lower(c.firstName) LIKE lower(:name)")
+                .setParameter("name", needle + "%")
                 .getResultList();
     }
 

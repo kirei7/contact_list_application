@@ -3,6 +3,7 @@ package com.vlad.pet.facebook;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import static org.apache.commons.lang.StringUtils.isEmpty;
 @Entity
 public class Contact  implements Comparable<Contact> {
     @Id
@@ -62,7 +63,17 @@ public class Contact  implements Comparable<Contact> {
     }
 
     public int compareTo(Contact o) {
-        return this.getFirstName().compareTo(o.getFirstName());
+        int result = this.getFirstName().compareTo(o.getFirstName());
+        if (result == 0) {
+            //lets compare last names
+            String thisName = this.getLastName(),
+                    otherName = o.getLastName();
+            if (isEmpty(thisName) && isEmpty(otherName)) return result;
+            if (isEmpty(thisName) && !isEmpty(otherName)) return 1;
+            if (!isEmpty(thisName) && isEmpty(otherName)) return 0;
+            return thisName.compareTo(otherName);
+        }
+        return result;
     }
 
     @Override
@@ -70,7 +81,7 @@ public class Contact  implements Comparable<Contact> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contact contact = (Contact) o;
-        return getId() == contact.getId();
+        return getId().equals(contact.getId());
     }
 
     @Override

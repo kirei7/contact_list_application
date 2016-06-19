@@ -5,7 +5,8 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static junitparams.JUnitParamsRunner.$;
 import static org.junit.Assert.assertEquals;
@@ -38,12 +39,12 @@ public class ContactTest {
 
     @Test
     public void contactsMustBeProperlyComparedFirstName() {
-        List<String> names = new ArrayList<String>();
+        List<String> names = new ArrayList<>();
         names.add("Владислав");
         names.add("Vlad");
         names.add("Gena");
         names.add("2D2R");
-        List<Contact> contacts = new ArrayList<Contact>();
+        List<Contact> contacts = new ArrayList<>();
         for (String name : names) {
             Contact contact = new Contact();
             contact.setFirstName(name);

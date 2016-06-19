@@ -1,10 +1,10 @@
 package com.vlad.pet.facebook;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.vlad.pet.facebook.dao.ContactDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,9 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @ContextConfiguration(locations = "classpath:application-context-test.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,11 +23,11 @@ public class ContactDaoTest {
     private static final Logger logger = LoggerFactory.getLogger("debug");
 
     @Autowired
-    ContactDao contactDao;
+    private ContactDao contactDao;
 
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void persistGivenContact() {
         Contact contact = getTestContact();
         contactDao.persist(contact);
@@ -38,7 +36,7 @@ public class ContactDaoTest {
 
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void findPersistedContact() {
         Contact contact = getTestContact();
         contactDao.persist(contact);
@@ -50,7 +48,7 @@ public class ContactDaoTest {
 
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void deletePersistedContact() {
         Contact contact1 = getTestContact();
         Contact contact2 = getTestContact();
@@ -64,16 +62,16 @@ public class ContactDaoTest {
 
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void searchByName() {
-        List<String> lastNames = new ArrayList<String>();
+        List<String> lastNames = new ArrayList<>();
         lastNames.add("Holmes");
         lastNames.add("Reagan");
         lastNames.add("McDonald");
         lastNames.add("Jenkees");
         lastNames.add("Jenkins");
         String nameToSearch= "Ronald";
-        List<Contact> contacts = new ArrayList<Contact>();
+        List<Contact> contacts = new ArrayList<>();
         for (String lastName : lastNames) {
             Contact temp = getTestContact();
             temp.setFirstName(nameToSearch);
@@ -86,13 +84,32 @@ public class ContactDaoTest {
         for (Contact contact : contacts) {
             contactDao.persist(contact);
         }
-        List<Contact> finded = contactDao.find(nameToSearch);
-        logger.debug(Integer.toString(finded.size()));
+        List<Contact> finded = contactDao.find("ron");
         for (Contact contact : finded) {
             assertTrue(contact.getFirstName().equals(nameToSearch));
-            //number of contacts with name "Ronald" must be 3
-            assertTrue(finded.size() == 3);
         }
+        //number of contacts with name "Ronald" must be 3
+        assertTrue(finded.size() == 3);
+    }
+    @Test
+    @Transactional
+    @Rollback
+    public void entityUpdatedUsingMerge() {
+        Contact contact = getTestContact();
+        contactDao.persist(contact);
+        String changedLastName = "Changed";
+        Contact another = new Contact();
+        another.setId(1l);
+        another.setLastName(changedLastName);
+        contactDao.merge(another);
+        assertEquals(changedLastName, contactDao.findById(1l).getLastName());
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void getAllContactsReturnOrderedList() {
+
     }
     //returns a valid Contact entity
     private Contact getTestContact() {

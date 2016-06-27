@@ -69,4 +69,9 @@ public class ContactServiceTest {
         contactService.search(null);
     }
 
+    @Test
+    public void getAllContactsInvokeProperDaoMethod() {
+        contactService.getAllContacts();
+        verify(contactDao).getAllContacts();
+    }
 }

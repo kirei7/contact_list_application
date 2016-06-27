@@ -34,4 +34,7 @@ public class ContactService {
         }
         return contactDao.find(needle);
     }
+    public List<Contact> getAllContacts() {
+        return contactDao.getAllContacts();
+    }
 }

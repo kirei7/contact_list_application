@@ -17,5 +17,5 @@ public interface ContactDao {
 
     List<Contact> find(String needle);
 
-
+    List<Contact> getAllContacts();
 }

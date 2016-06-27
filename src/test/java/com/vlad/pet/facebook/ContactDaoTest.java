@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -91,6 +92,7 @@ public class ContactDaoTest {
         //number of contacts with name "Ronald" must be 3
         assertTrue(finded.size() == 3);
     }
+/*
     @Test
     @Transactional
     @Rollback
@@ -104,12 +106,42 @@ public class ContactDaoTest {
         contactDao.merge(another);
         assertEquals(changedLastName, contactDao.findById(1l).getLastName());
     }
+*/
 
     @Test
     @Transactional
     @Rollback
     public void getAllContactsReturnOrderedList() {
+        List<String> firstNames = new ArrayList<>();
+        firstNames.add("Atticus");
+        firstNames.add("James");
+        firstNames.add("Indiana");
+        firstNames.add("Rick");
+        firstNames.add("Will");
+        firstNames.add("Lily");
+        firstNames.add("Bane");
+        List<String> lastNames = new ArrayList<>();
+        lastNames.add("Finch");
+        lastNames.add("Bond");
+        lastNames.add("Jones");
+        lastNames.add("Blaine");
+        lastNames.add("Kane");
+        lastNames.add("Bond");
 
+        List<Contact> contacts = new ArrayList<>();
+        for (int i = 0; i < firstNames.size(); i++) {
+            Contact temp = new Contact();
+            temp.setFirstName(firstNames.get(i));
+            if (i < lastNames.size())
+            temp.setLastName(lastNames.get(i));
+            contacts.add(temp);
+            contactDao.persist(temp);
+        }
+        Collections.sort(contacts);
+        List<Contact> persisted = contactDao.getAllContacts();
+        for (int i = 0; i < contacts.size(); i++) {
+            assertEquals(contacts.get(i), persisted.get(i));
+        }
     }
     //returns a valid Contact entity
     private Contact getTestContact() {

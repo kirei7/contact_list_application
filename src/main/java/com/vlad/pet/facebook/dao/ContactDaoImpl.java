@@ -57,5 +57,11 @@ public class ContactDaoImpl implements ContactDao{
                 .getResultList();
     }
 
+    @Override
+    public List<Contact> getAllContacts() {
+        return manager.createQuery("SELECT c FROM Contact c ORDER BY c.firstName, c.lastName")
+                .getResultList();
+    }
+
 
 }

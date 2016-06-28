@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="contactlist_application" />
         <module name="facebook_application" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="contactlist_application" target="1.8" />
       <module name="facebook_application" target="1.8" />
     </bytecodeTargetLevel>
   </component>

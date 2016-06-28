@@ -1,7 +1,7 @@
-package com.vlad.pet.facebook;
+package com.vlad.pet.contactlist.model;
 
-import com.vlad.pet.facebook.dao.ContactDao;
-import com.vlad.pet.facebook.service.ContactService;
+import com.vlad.pet.contactlist.model.dao.ContactDao;
+import com.vlad.pet.contactlist.model.service.ContactService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

@@ -1,7 +1,7 @@
-package com.vlad.pet.facebook.service;
+package com.vlad.pet.contactlist.model.service;
 
-import com.vlad.pet.facebook.Contact;
-import com.vlad.pet.facebook.dao.ContactDao;
+import com.vlad.pet.contactlist.model.Contact;
+import com.vlad.pet.contactlist.model.dao.ContactDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

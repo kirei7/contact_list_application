@@ -1,4 +1,4 @@
-package com.vlad.pet.facebook;
+package com.vlad.pet.contactlist.model;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;

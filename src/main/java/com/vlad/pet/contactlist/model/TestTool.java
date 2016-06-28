@@ -1,4 +1,4 @@
-package com.vlad.pet.facebook;
+package com.vlad.pet.contactlist.model;
 
 class TestTool {
     public static void main(String... args) {

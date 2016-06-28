@@ -1,6 +1,6 @@
-package com.vlad.pet.facebook.dao;
+package com.vlad.pet.contactlist.model.dao;
 
-import com.vlad.pet.facebook.Contact;
+import com.vlad.pet.contactlist.model.Contact;
 
 import java.util.List;
 

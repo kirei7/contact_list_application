@@ -1,6 +1,6 @@
-package com.vlad.pet.facebook;
+package com.vlad.pet.contactlist.model;
 
-import com.vlad.pet.facebook.dao.ContactDao;
+import com.vlad.pet.contactlist.model.dao.ContactDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

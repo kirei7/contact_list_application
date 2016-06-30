@@ -20,4 +20,6 @@ public class UserTest {
         user.setContactList(contacts);
         assertFalse(contacts == user.getContactList());
     }
+
+
 }

@@ -1,9 +1,6 @@
 package com.vlad.pet.contactlist.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +9,8 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
-
-    private String name;
+    @Column(unique = true, nullable = false)
+    private String nickName;
 
     @OneToMany( targetEntity=Contact.class )
     private List contactList;
@@ -26,12 +23,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public List getContactList() {

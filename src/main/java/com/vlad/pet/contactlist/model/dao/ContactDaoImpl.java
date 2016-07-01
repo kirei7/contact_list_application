@@ -33,14 +33,7 @@ public class ContactDaoImpl implements ContactDao{
     public Contact removeById(Long id) {
         if (id == null) return null;
         Contact contact = manager.find(Contact.class, id);
-        if (manager.contains(contact)) {
-            manager.remove(contact);
-        } else {
-            Contact attached = findById(contact.getId());
-            manager.remove(attached);
-            return attached;
-        }
-        return contact;
+        return remove(contact);
     }
     public void merge(Contact contact) {
         manager.merge(contact);

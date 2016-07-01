@@ -93,4 +93,16 @@ public class Contact  implements Comparable<Contact> {
         base += 4;
         return Long.hashCode(base);
     }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", mobileNum='" + mobileNum + '\'' +
+                ", workNum='" + workNum + '\'' +
+                '}';
+    }
 }

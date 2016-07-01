@@ -2,8 +2,8 @@ package com.vlad.pet.contactlist.model;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.assertFalse;
 
@@ -13,13 +13,10 @@ public class UserTest {
     @Test
     public void defensiveCopyingShouldBeUsed() {
         User user = new User();
-        List<Contact> contacts = new ArrayList<>();
-        contacts.add(new Contact());
-        contacts.add(new Contact());
+        Set<Contact> contacts = new HashSet<>();
         contacts.add(new Contact());
         user.setContactList(contacts);
         assertFalse(contacts == user.getContactList());
     }
-
 
 }

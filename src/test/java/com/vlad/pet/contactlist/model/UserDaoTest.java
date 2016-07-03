@@ -96,6 +96,16 @@ public class UserDaoTest {
         assertEquals(expectedExceptions, exceptionsThrown);
     }
 
+    @Test
+    public void findUnexistingUserReturnNull() {
+        //unexistent id
+        User user = userDao.find(4l);
+        assertNull(user);
+        //unexistent nickname
+        user = userDao.find("name");
+        assertNull(user);
+    }
+
     private User createUser() {
         return new User();
     }

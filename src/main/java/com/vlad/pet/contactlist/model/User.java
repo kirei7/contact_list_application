@@ -14,7 +14,7 @@ public class User {
     @Size(min = 5, max = 16)
     private String nickName;
 
-    @OneToMany( targetEntity=Contact.class, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Contact.class, fetch = FetchType.EAGER)
     private Set<Contact> contactList = new HashSet<>();
 
     public Long getId() {
@@ -48,10 +48,16 @@ public class User {
             contactList.add(contact);
         }
     }
+
     public void removeContactFromList(Contact contact) {
         if (contactList.contains(contact)) {
             contactList.remove(contact);
         }
+    }
+
+    public User withNickName(String nickName) {
+        setNickName(nickName);
+        return this;
     }
 
     @Override
@@ -62,18 +68,6 @@ public class User {
                 '}';
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        return getId().equals(user.getId());
-
-    }
-
     @Override
     public int hashCode() {
         Long base = 4l;
@@ -82,5 +76,17 @@ public class User {
         }
         base += 17;
         return Long.hashCode(base);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (getId() != null ? !getId().equals(user.getId()) : user.getId() != null) return false;
+        return getNickName() != null ? getNickName().equals(user.getNickName()) : user.getNickName() == null;
+
     }
 }

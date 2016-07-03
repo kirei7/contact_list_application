@@ -62,6 +62,36 @@ public class Contact  implements Comparable<Contact> {
         return email;
     }
 
+    //'with' method is plain setter, but it return
+    //'this' reference, which is convenient for
+    //'fluent interface'
+    //just like:
+    //contact.withFirstName("John").withLastName("Dou");
+    public Contact withFirstName(String firstName){
+        setFirstName(firstName);
+        return this;
+    }
+
+    public Contact withLastName(String lastName) {
+        setLastName(lastName);
+        return this;
+    }
+
+    public Contact withMobileNum(String mobileNum) {
+        setMobileNum(mobileNum);
+        return this;
+    }
+
+    public Contact withWorkNum(String workNum) {
+        setWorkNum(workNum);
+        return this;
+    }
+
+    public Contact withEmail(String email) {
+        setEmail(email);
+        return this;
+    }
+    
     public int compareTo(Contact o) {
         int result = this.getFirstName().compareTo(o.getFirstName());
         if (result == 0) {
@@ -81,7 +111,8 @@ public class Contact  implements Comparable<Contact> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contact contact = (Contact) o;
-        return getId().equals(contact.getId());
+        if (getId() != null ? !getId().equals(contact.getId()) : contact.getId() != null) return false;
+        return getFirstName() != null ? getFirstName().equals(contact.getFirstName()) : contact.getFirstName() == null;
     }
 
     @Override

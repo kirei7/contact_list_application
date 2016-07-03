@@ -3,9 +3,11 @@ package com.vlad.pet.contactlist.model.service;
 import com.vlad.pet.contactlist.model.User;
 import com.vlad.pet.contactlist.model.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class UserService {
     private UserDao userDao;
     @Autowired

@@ -39,9 +39,11 @@ public class ApplicationManagerTest {
     public void setUp() {
         users.add( new User()
                 .withNickName("primo")
+                .withPasswordHash("123")
         );
         users.add( new User()
                 .withNickName("SecondAndLast")
+                .withPasswordHash("345")
         );
         contacts.add(new Contact()
                 .withFirstName("John")
@@ -82,7 +84,7 @@ public class ApplicationManagerTest {
     @Transactional
     @Rollback
     public void registerUser() {
-        User user = new User().withNickName("nickName");
+        User user = new User().withNickName("nickName").withPasswordHash("passwordHash");
 
         applicationManager.registerUser(user);
         assertTrue(applicationManager.getAllUsers().contains(user));

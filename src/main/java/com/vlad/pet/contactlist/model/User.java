@@ -13,6 +13,8 @@ public class User {
     @Column(unique = true, nullable = false)
     @Size(min = 5, max = 16)
     private String nickName;
+    @Column( nullable = false)
+    private String passwordHash;
 
     @OneToMany(targetEntity = Contact.class, fetch = FetchType.EAGER)
     private Set<Contact> contactList = new HashSet<>();
@@ -89,4 +91,17 @@ public class User {
         return getNickName() != null ? getNickName().equals(user.getNickName()) : user.getNickName() == null;
 
     }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+    public User withPasswordHash(String passwordHash) {
+        setPasswordHash(passwordHash);
+        return this;
+    }
+
 }

@@ -16,6 +16,12 @@
     <spring-framework.version>4.0.1.RELEASE</spring-framework.version>
   </properties>
 
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.3.6.RELEASE</version>
+  </parent>
+
   <dependencies>
     <!--DBCP-->
     <dependency>
@@ -23,59 +29,13 @@
       <artifactId>commons-dbcp</artifactId>
       <version>1.2.2</version>
     </dependency>
-    <!-- Spring and Transactions -->
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-aspects</artifactId>
-      <version>${spring-framework.version}</version>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>${spring-framework.version}</version>
-      <exclusions>
-        <!--Turn off commons-logging so we can use logback+slf4j-->
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
-      <version>${spring-framework.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-orm</artifactId>
-      <version>${spring-framework.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>${spring-framework.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!--Logging-->
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.1.7</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <version>1.7.21</version>
-    </dependency>
-
-    <!--Junit-->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.10</version>
-      <scope>test</scope>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
     <!--Parameterized tests-->
     <dependency>
@@ -83,74 +43,16 @@
       <artifactId>JUnitParams</artifactId>
       <version>1.0.2</version>
     </dependency>
-    <!--Mockito-->
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>1.9.5</version>
-    </dependency>
-
-    <!--JPA and Hibernate-->
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>4.0.1.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <version>4.2.0.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate.common</groupId>
-      <artifactId>hibernate-commons-annotations</artifactId>
-      <version>4.0.1.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate.javax.persistence</groupId>
-      <artifactId>hibernate-jpa-2.0-api</artifactId>
-      <version>1.0.1.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
-      <version>4.0.1.Final</version>
-    </dependency>
+    <!--Something from testing-dao tutorial-->
     <dependency>
       <groupId>javax.validation</groupId>
       <artifactId>validation-api</artifactId>
       <version>1.0.0.GA</version>
     </dependency>
-    <!--Something from testing-dao tutorial-->
     <dependency>
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
       <version>2.2.8</version>
-    </dependency>
-    <dependency>
-      <groupId>antlr</groupId>
-      <artifactId>antlr</artifactId>
-      <version>2.7.6</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-collections</groupId>
-      <artifactId>commons-collections</artifactId>
-      <version>3.1</version>
-    </dependency>
-    <dependency>
-      <groupId>dom4j</groupId>
-      <artifactId>dom4j</artifactId>
-      <version>1.6.1</version>
-    </dependency>
-    <dependency>
-      <groupId>javassist</groupId>
-      <artifactId>javassist</artifactId>
-      <version>3.4.GA</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.transaction</groupId>
-      <artifactId>jta</artifactId>
-      <version>1.1</version>
     </dependency>
     <dependency>
       <groupId>commons-lang</groupId>
@@ -159,17 +61,4 @@
     </dependency>
   </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.5.1</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>

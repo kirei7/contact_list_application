@@ -43,8 +43,8 @@ public class UserDaoTest {
         Contact contact = new Contact();
         contact.setFirstName("Uncle Bob");
         contactDao.persist(contact);
-        User user = createUser();
         String name = "nickName";
+        User user = createUser().withNickName(name).withPasswordHash(name);
         user.setNickName(name);
         //3)
         user.addContactToList(contact);
@@ -66,14 +66,20 @@ public class UserDaoTest {
         Set<User> users = new HashSet<>();
         for (int i = 0; i < 4; i++) {
             User user = createUser();
-            user.setNickName(
-                    Integer.toString(i) +
-                    Integer.toString(i) +
-                    Integer.toString(i) +
-                    Integer.toString(i) +
-                    Integer.toString(i)
+            userDao.persist(user
+                    .withNickName(
+                            Integer.toString(i) +
+                            Integer.toString(i) +
+                            Integer.toString(i) +
+                            Integer.toString(i) +
+                            Integer.toString(i))
+                    .withPasswordHash(
+                            Integer.toString(i) +
+                            Integer.toString(i) +
+                            Integer.toString(i) +
+                            Integer.toString(i) +
+                            Integer.toString(i))
             );
-            userDao.persist(user);
             users.add(user);
         }
         assertEquals(users, userDao.getAllUsers());
@@ -87,7 +93,7 @@ public class UserDaoTest {
         List<String> names = getIllegalNickNames();
         for (String name : names) {
             try {
-                assignNameAndPersist(new User(), name);
+                assignNameAndPasswordHashAndPersist(new User(), name, name);
             } catch (IllegalArgumentException ex) {
                 exceptionsThrown++;
             }
@@ -109,8 +115,9 @@ public class UserDaoTest {
     private User createUser() {
         return new User();
     }
-    private void assignNameAndPersist(User user, String name) {
+    private void assignNameAndPasswordHashAndPersist(User user, String name, String passwordHash) {
         user.setNickName(name);
+        user.setPasswordHash(passwordHash);
         userDao.persist(user);
     }
     private List<String> getIllegalNickNames() {

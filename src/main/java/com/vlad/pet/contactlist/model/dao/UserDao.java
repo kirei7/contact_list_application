@@ -5,7 +5,7 @@ import com.vlad.pet.contactlist.model.User;
 import java.util.Set;
 
 public interface UserDao {
-    void persist(User user);
+    User persist(User user);
 
     User remove(User user);
 

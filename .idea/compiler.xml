@@ -26,9 +26,8 @@
         <module name="facebook_application" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="contactlist_application" target="1.6" />
-      <module name="facebook_application" target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="contactlist_application" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

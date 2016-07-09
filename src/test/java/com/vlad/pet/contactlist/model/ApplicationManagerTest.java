@@ -34,11 +34,12 @@ public class ApplicationManagerTest {
 
     private List<User> users = new ArrayList<>();
     private List<Contact> contacts = new ArrayList<>();
-
+    private final String validUserName = "primo";
+    private final String validUserPassword = "qwertY123";
     @Before
     public void setUp() {
         users.add( new User()
-                .withNickName("primo")
+                .withNickName(validUserName)
                 .withPasswordHash("123")
         );
         users.add( new User()
@@ -84,16 +85,22 @@ public class ApplicationManagerTest {
     @Transactional
     @Rollback
     public void registerUser() {
-        User user = new User().withNickName("nickName").withPasswordHash("passwordHash");
-
-        applicationManager.registerUser(user);
-        assertTrue(applicationManager.getAllUsers().contains(user));
+        assertNotNull(
+                applicationManager.registerUser(
+                        createUserForm()
+                )
+        );
     }
     @Test(expected = UserAlreadyRegisteredException.class)
     @Transactional
     @Rollback
     public void unableToRegisterUsersWithIdenticalNickNames() {
-        applicationManager.registerUser(new User().withNickName("primo"));
+        UserForm userForm = new UserForm();
+        userForm.setNickName(validUserName);
+        userForm.setPassword(validUserPassword);
+        applicationManager.registerUser(
+            userForm
+        );
     }
     @Test
     @Transactional
@@ -130,5 +137,11 @@ public class ApplicationManagerTest {
         ).get(0);
         logger.debug(changed.toString());
         assertEquals(changedName, changed.getFirstName());
+    }
+    public UserForm createUserForm() {
+        UserForm userForm = new UserForm();
+        userForm.setNickName("NickName");
+        userForm.setPassword("Password");
+        return userForm;
     }
 }

@@ -3,6 +3,8 @@ package com.vlad.pet.contactlist.model;
 import com.vlad.pet.contactlist.model.exception.UserAlreadyRegisteredException;
 import com.vlad.pet.contactlist.model.service.ContactService;
 import com.vlad.pet.contactlist.model.service.UserService;
+import com.vlad.pet.contactlist.model.util.OwnPasswordEncoder;
+import com.vlad.pet.contactlist.model.util.UserFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +17,21 @@ public class ApplicationManager {
     private ContactService contactService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private OwnPasswordEncoder encoder;
+    @Autowired
+    private UserFormValidator validator;
 
-    public void registerUser(User user) {
-        if (userService.findByNickName(user.getNickName()) != null)
-            throw new UserAlreadyRegisteredException("User with this name already exists: " + user.getNickName());
-        userService.save(user);
+    public User registerUser(UserForm userForm) {
+        if (userService.findByNickName(userForm.getNickName()) != null)
+            throw new UserAlreadyRegisteredException("User with this name already exists: " + userForm.getNickName());
+        validator.isValid(userForm);
+        User user = new User()
+                .withNickName(userForm.getNickName())
+                .withPasswordHash(
+                    encoder.encode(userForm.getPassword())
+                );
+        return userService.save(user);
     }
     public void addContactToUserList(User user, Contact contact) {
         contactService.save(contact);

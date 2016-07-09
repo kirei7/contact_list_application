@@ -17,8 +17,8 @@ public class UserService {
         }
         this.userDao = userDao;
     }
-    public void save(User user) {
-        userDao.persist(user);
+    public User save(User user) {
+        return userDao.persist(user);
     }
 
     public void delete(User user) {

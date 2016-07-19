@@ -1,4 +1,4 @@
-package com.vlad.pet.contactlist.model;
+package com.vlad.pet.contactlist.model.user;
 
 public class UserForm {
     private String nickName;

@@ -1,6 +1,6 @@
 package com.vlad.pet.contactlist.model.util;
 
-import com.vlad.pet.contactlist.model.UserForm;
+import com.vlad.pet.contactlist.model.user.UserForm;
 import org.springframework.stereotype.Component;
 
 @Component

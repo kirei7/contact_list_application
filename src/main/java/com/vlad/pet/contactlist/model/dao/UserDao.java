@@ -1,6 +1,6 @@
 package com.vlad.pet.contactlist.model.dao;
 
-import com.vlad.pet.contactlist.model.User;
+import com.vlad.pet.contactlist.model.user.User;
 
 import java.util.Set;
 

@@ -16,7 +16,22 @@
                                 type="annotation" />
     </context:component-scan>
 
-
+    <bean class="com.vlad.pet.contactlist.model.Contact" id="testStr">
+        <property name="firstName" value="${database.username}" />
+    </bean>
+    <bean class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close" id="dataSource">
+        <property name="driverClassName" value="${database.driverClassName}" />
+        <property name="url" value="${database.url}" />
+        <property name="username" value="${database.username}" />
+        <property name="password" value="${database.password}" />
+        <property name="testOnBorrow" value="true" />
+        <property name="testOnReturn" value="true" />
+        <property name="testWhileIdle" value="true" />
+        <property name="timeBetweenEvictionRunsMillis" value="1800000" />
+        <property name="numTestsPerEvictionRun" value="3" />
+        <property name="minEvictableIdleTimeMillis" value="1800000" />
+    </bean>
 
     <bean class="org.springframework.orm.jpa.JpaTransactionManager"
           id="transactionManager">
@@ -32,10 +47,10 @@
         </property>
         <property name="jpaProperties">
             <props>
-                <prop key="hibernate.archive.autodetection">class,hbm</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
             </props>
         </property>
     </bean>

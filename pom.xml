@@ -4,7 +4,7 @@
 
   <groupId>com.vlad.pet.contactlist</groupId>
   <artifactId>model</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.1</version>
   <packaging>jar</packaging>
 
   <name>model</name>
@@ -46,19 +46,35 @@
     <dependency>
       <groupId>pl.pragmatists</groupId>
       <artifactId>JUnitParams</artifactId>
+      <scope>test</scope>
       <version>1.0.2</version>
     </dependency>
-    <!--Something from testing-dao tutorial-->
     <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <version>1.0.0.GA</version>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <scope>provided</scope>
+      <version>5.2.4.Final</version>
     </dependency>
+    <!--Required by hibernate validator-->
+    <dependency>
+      <groupId>javax.el</groupId>
+      <artifactId>javax.el-api</artifactId>
+      <version>2.2.4</version>
+    </dependency>
+    <!--Production db-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.10</version>
+    </dependency>
+    <!--In-memory db-->
     <dependency>
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
+      <scope>test</scope>
       <version>2.2.8</version>
     </dependency>
+    <!--Useful utils provided by Apache-->
     <dependency>
       <groupId>commons-lang</groupId>
       <artifactId>commons-lang</artifactId>

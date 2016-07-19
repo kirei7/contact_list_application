@@ -36,6 +36,9 @@ public class ContactService {
         }
         return contactDao.find(needle);
     }
+    public Contact findById(Long id) {
+        return contactDao.findById(id);
+    }
     public List<Contact> getAllContacts() {
         return contactDao.getAllContacts();
     }

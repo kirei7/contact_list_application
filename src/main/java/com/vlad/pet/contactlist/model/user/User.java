@@ -1,4 +1,6 @@
-package com.vlad.pet.contactlist.model;
+package com.vlad.pet.contactlist.model.user;
+
+import com.vlad.pet.contactlist.model.Contact;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -15,6 +17,9 @@ public class User {
     private String nickName;
     @Column( nullable = false)
     private String passwordHash;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.USER;
 
     @OneToMany(targetEntity = Contact.class, fetch = FetchType.EAGER)
     private Set<Contact> contactList = new HashSet<>();
@@ -25,6 +30,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getNickName() {

@@ -9,12 +9,7 @@
 
     <context:property-placeholder location="classpath*:META-INF/spring/*.properties" />
     <context:spring-configured />
-    <context:component-scan base-package="com.vlad.pet.contactlist">
-        <context:exclude-filter expression=".*_Roo_.*"
-                                type="regex" />
-        <context:exclude-filter expression="org.springframework.stereotype.Controller"
-                                type="annotation" />
-    </context:component-scan>
+    <context:component-scan base-package="com.vlad.pet.contactlist.model"/>
 
     <bean class="com.vlad.pet.contactlist.model.Contact" id="testStr">
         <property name="firstName" value="${database.username}" />
@@ -51,6 +46,9 @@
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+                <prop key="hibernate.connection.useUnicode">true</prop>
+                <prop key="hibernate.connection.CharSet">UTF-8</prop>
+                <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
             </props>
         </property>
     </bean>

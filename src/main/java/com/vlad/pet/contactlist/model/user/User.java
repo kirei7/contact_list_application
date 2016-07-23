@@ -3,7 +3,6 @@ package com.vlad.pet.contactlist.model.user;
 import com.vlad.pet.contactlist.model.Contact;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +12,6 @@ public class User {
     @GeneratedValue
     private Long id;
     @Column(unique = true, nullable = false)
-    @Size(min = 5, max = 16)
     private String nickName;
     @Column( nullable = false)
     private String passwordHash;

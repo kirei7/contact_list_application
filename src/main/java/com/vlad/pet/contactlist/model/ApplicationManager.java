@@ -9,6 +9,8 @@ import com.vlad.pet.contactlist.model.util.OwnPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -49,8 +51,10 @@ public class ApplicationManager {
         return contactService.update(contact);
     }
 
-    public Set<Contact> getAllUserContacts(User user) {
-        return user.getContactList();
+    public List<Contact> getAllUserContacts(User user) {
+        List<Contact> contacts = new ArrayList<>(user.getContactList());
+        contacts.sort(null);
+        return contacts;
     }
     public Set<User> getAllUsers() {
         return userService.getAllUsers();

@@ -2,6 +2,7 @@ package com.vlad.pet.contactlist.model;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -14,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(JUnitParamsRunner.class)
 public class ContactTest {
 
+    private final static Logger logger = Logger.getLogger("debug");
 
     @Test
     @Parameters(method = "getContactData")
@@ -56,6 +58,16 @@ public class ContactTest {
                     contacts.get(i).compareTo(contacts.get(i + 1))
             );
         }
+    }
+
+    @Test
+    public void contactsMustBeSortedProperly() {
+        List<Contact> list = new ArrayList<>();
+        list.add(new Contact().withFirstName("S"));
+        list.add(new Contact().withFirstName("1"));
+        list.add(new Contact().withFirstName("Z"));
+        list.sort(null);
+        assertEquals("1",list.get(0).getFirstName());
     }
 
     private Object[] getContactData() {

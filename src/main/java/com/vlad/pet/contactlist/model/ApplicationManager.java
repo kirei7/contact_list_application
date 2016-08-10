@@ -6,7 +6,6 @@ import com.vlad.pet.contactlist.model.service.UserService;
 import com.vlad.pet.contactlist.model.user.User;
 import com.vlad.pet.contactlist.model.user.UserForm;
 import com.vlad.pet.contactlist.model.util.OwnPasswordEncoder;
-import com.vlad.pet.contactlist.model.util.UserFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +20,10 @@ public class ApplicationManager {
     private UserService userService;
     @Autowired
     private OwnPasswordEncoder encoder;
-    @Autowired
-    private UserFormValidator validator;
 
     public User registerUser(UserForm userForm) {
         if (userService.findByNickName(userForm.getNickName()) != null)
             throw new UserAlreadyRegisteredException("User with this name already exists: " + userForm.getNickName());
-        validator.isValid(userForm);
         User user = new User()
                 .withNickName(userForm.getNickName())
                 .withPasswordHash(
@@ -49,8 +45,8 @@ public class ApplicationManager {
         return contact;
     }
 
-    public void updateContactFromUserList(Contact contact) {
-        contactService.update(contact);
+    public Contact updateContactFromUserList(Contact contact) {
+        return contactService.update(contact);
     }
 
     public Set<Contact> getAllUserContacts(User user) {

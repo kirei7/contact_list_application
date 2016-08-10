@@ -11,7 +11,7 @@ public interface ContactDao {
 
     Contact removeById(Long id);
 
-    void merge(Contact contact);
+    Contact merge(Contact contact);
 
     Contact findById(Long id);
 

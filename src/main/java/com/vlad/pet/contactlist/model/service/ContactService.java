@@ -26,8 +26,8 @@ public class ContactService {
         contactDao.remove(contact);
     }
 
-    public void update(Contact contact) {
-        contactDao.merge(contact);
+    public Contact update(Contact contact) {
+        return contactDao.merge(contact);
     }
 
     public List<Contact> search(String needle) {

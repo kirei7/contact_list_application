@@ -35,8 +35,8 @@ public class ContactDaoImpl implements ContactDao{
         Contact contact = manager.find(Contact.class, id);
         return remove(contact);
     }
-    public void merge(Contact contact) {
-        manager.merge(contact);
+    public Contact merge(Contact contact) {
+        return manager.merge(contact);
     }
     public Contact findById(Long id) {
         if (id == null) return null;

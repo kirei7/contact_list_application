@@ -19,4 +19,12 @@ public class UserForm {
     public void setPassword(String password) {
         this.password = password;
     }
+    public UserForm withNickName(String nickName) {
+        this.setNickName(nickName);
+        return this;
+    }
+    public UserForm withPassword(String password) {
+        this.setPassword(password);
+        return this;
+    }
 }

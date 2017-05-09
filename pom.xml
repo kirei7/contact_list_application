@@ -4,7 +4,7 @@
 
   <groupId>com.vlad.pet.contactlist</groupId>
   <artifactId>model</artifactId>
-  <version>1.1</version>
+  <version>1.1-inmemory</version>
   <packaging>jar</packaging>
 
   <name>model</name>
@@ -62,16 +62,15 @@
       <version>2.2.4</version>
     </dependency>
     <!--Production db-->
-    <dependency>
+    <!--<dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.10</version>
-    </dependency>
+    </dependency>-->
     <!--In-memory db-->
     <dependency>
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
-      <scope>test</scope>
       <version>2.2.8</version>
     </dependency>
     <!--Useful utils provided by Apache-->

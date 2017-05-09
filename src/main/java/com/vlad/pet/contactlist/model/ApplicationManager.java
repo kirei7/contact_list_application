@@ -9,6 +9,7 @@ import com.vlad.pet.contactlist.model.util.OwnPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -23,6 +24,12 @@ public class ApplicationManager {
     @Autowired
     private OwnPasswordEncoder encoder;
 
+    @PostConstruct
+    private void createDefaultUser() {
+        registerUser(
+                new UserForm().withNickName("default").withPassword("default")
+        );
+    }
     public User registerUser(UserForm userForm) {
         if (userService.findByNickName(userForm.getNickName()) != null)
             throw new UserAlreadyRegisteredException("User with this name already exists: " + userForm.getNickName());

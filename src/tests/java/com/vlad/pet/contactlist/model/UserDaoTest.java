@@ -5,8 +5,7 @@ import com.vlad.pet.contactlist.model.dao.UserDao;
 import com.vlad.pet.contactlist.model.user.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -20,12 +19,13 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 @ContextConfiguration(locations = "classpath:application-context-test.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserDaoTest {
 
-    private static final Logger logger = LoggerFactory.getLogger("debug");
+    private static final Logger logger = Logger.getLogger("debug");
 
     @Autowired
     private ContactDao contactDao;
@@ -83,7 +83,7 @@ public class UserDaoTest {
             );
             users.add(user);
         }
-        assertEquals(users, userDao.getAllUsers());
+        assertTrue(userDao.getAllUsers().containsAll(users));
     }
 
     /*@Test
